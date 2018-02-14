@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.clothes.dao.OrdertableMapper">
+  <resultMap id="BaseResultMap" type="org.clothes.bean.Ordertable">
+    <id column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="clothesId" jdbcType="INTEGER" property="clothesid" />
+    <result column="orderNum" jdbcType="INTEGER" property="ordernum" />
+    <result column="clientName" jdbcType="VARCHAR" property="clientname" />
+    <result column="clientDep" jdbcType="VARCHAR" property="clientdep" />
+    <result column="clientMaj" jdbcType="VARCHAR" property="clientmaj" />
+    <result column="clientClass" jdbcType="VARCHAR" property="clientclass" />
+    <result column="clientNum" jdbcType="VARCHAR" property="clientnum" />
+    <result column="clientTel" jdbcType="VARCHAR" property="clienttel" />
+    <result column="orderStartTime" jdbcType="TIMESTAMP" property="orderstarttime" />
+    <result column="orderEndTime" jdbcType="TIMESTAMP" property="orderendtime" />
+    <result column="orderStatus" jdbcType="INTEGER" property="orderstatus" />
+    <result column="orderFlag" jdbcType="INTEGER" property="orderflag" />
+    <result column="orderCreateTime" jdbcType="TIMESTAMP" property="ordercreatetime" />
+    <result column="orderRemark" jdbcType="VARCHAR" property="orderremark" />
+    <result column="adminId" jdbcType="INTEGER" property="adminid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    orderId, clothesId, orderNum, clientName, clientDep, clientMaj, clientClass, clientNum, 
+    clientTel, orderStartTime, orderEndTime, orderStatus, orderFlag, orderCreateTime, 
+    orderRemark, adminId
+  </sql>
+  <select id="selectByExample" parameterType="org.clothes.bean.OrdertableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ordertable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ordertable
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ordertable
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.clothes.bean.OrdertableExample">
+    delete from ordertable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.clothes.bean.Ordertable">
+    insert into ordertable (orderId, clothesId, orderNum, 
+      clientName, clientDep, clientMaj, 
+      clientClass, clientNum, clientTel, 
+      orderStartTime, orderEndTime, orderStatus, 
+      orderFlag, orderCreateTime, orderRemark, 
+      adminId)
+    values (#{orderid,jdbcType=INTEGER}, #{clothesid,jdbcType=INTEGER}, #{ordernum,jdbcType=INTEGER}, 
+      #{clientname,jdbcType=VARCHAR}, #{clientdep,jdbcType=VARCHAR}, #{clientmaj,jdbcType=VARCHAR}, 
+      #{clientclass,jdbcType=VARCHAR}, #{clientnum,jdbcType=VARCHAR}, #{clienttel,jdbcType=VARCHAR}, 
+      #{orderstarttime,jdbcType=TIMESTAMP}, #{orderendtime,jdbcType=TIMESTAMP}, #{orderstatus,jdbcType=INTEGER}, 
+      #{orderflag,jdbcType=INTEGER}, #{ordercreatetime,jdbcType=TIMESTAMP}, #{orderremark,jdbcType=VARCHAR}, 
+      #{adminid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.clothes.bean.Ordertable">
+    insert into ordertable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="clothesid != null">
+        clothesId,
+      </if>
+      <if test="ordernum != null">
+        orderNum,
+      </if>
+      <if test="clientname != null">
+        clientName,
+      </if>
+      <if test="clientdep != null">
+        clientDep,
+      </if>
+      <if test="clientmaj != null">
+        clientMaj,
+      </if>
+      <if test="clientclass != null">
+        clientClass,
+      </if>
+      <if test="clientnum != null">
+        clientNum,
+      </if>
+      <if test="clienttel != null">
+        clientTel,
+      </if>
+      <if test="orderstarttime != null">
+        orderStartTime,
+      </if>
+      <if test="orderendtime != null">
+        orderEndTime,
+      </if>
+      <if test="orderstatus != null">
+        orderStatus,
+      </if>
+      <if test="orderflag != null">
+        orderFlag,
+      </if>
+      <if test="ordercreatetime != null">
+        orderCreateTime,
+      </if>
+      <if test="orderremark != null">
+        orderRemark,
+      </if>
+      <if test="adminid != null">
+        adminId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="clothesid != null">
+        #{clothesid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null">
+        #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="clientname != null">
+        #{clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="clientdep != null">
+        #{clientdep,jdbcType=VARCHAR},
+      </if>
+      <if test="clientmaj != null">
+        #{clientmaj,jdbcType=VARCHAR},
+      </if>
+      <if test="clientclass != null">
+        #{clientclass,jdbcType=VARCHAR},
+      </if>
+      <if test="clientnum != null">
+        #{clientnum,jdbcType=VARCHAR},
+      </if>
+      <if test="clienttel != null">
+        #{clienttel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstarttime != null">
+        #{orderstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderendtime != null">
+        #{orderendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderstatus != null">
+        #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderflag != null">
+        #{orderflag,jdbcType=INTEGER},
+      </if>
+      <if test="ordercreatetime != null">
+        #{ordercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderremark != null">
+        #{orderremark,jdbcType=VARCHAR},
+      </if>
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.clothes.bean.OrdertableExample" resultType="java.lang.Long">
+    select count(*) from ordertable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ordertable
+    <set>
+      <if test="record.orderid != null">
+        orderId = #{record.orderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.clothesid != null">
+        clothesId = #{record.clothesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordernum != null">
+        orderNum = #{record.ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientname != null">
+        clientName = #{record.clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientdep != null">
+        clientDep = #{record.clientdep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientmaj != null">
+        clientMaj = #{record.clientmaj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientclass != null">
+        clientClass = #{record.clientclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientnum != null">
+        clientNum = #{record.clientnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clienttel != null">
+        clientTel = #{record.clienttel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderstarttime != null">
+        orderStartTime = #{record.orderstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderendtime != null">
+        orderEndTime = #{record.orderendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderstatus != null">
+        orderStatus = #{record.orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderflag != null">
+        orderFlag = #{record.orderflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordercreatetime != null">
+        orderCreateTime = #{record.ordercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderremark != null">
+        orderRemark = #{record.orderremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminid != null">
+        adminId = #{record.adminid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ordertable
+    set orderId = #{record.orderid,jdbcType=INTEGER},
+      clothesId = #{record.clothesid,jdbcType=INTEGER},
+      orderNum = #{record.ordernum,jdbcType=INTEGER},
+      clientName = #{record.clientname,jdbcType=VARCHAR},
+      clientDep = #{record.clientdep,jdbcType=VARCHAR},
+      clientMaj = #{record.clientmaj,jdbcType=VARCHAR},
+      clientClass = #{record.clientclass,jdbcType=VARCHAR},
+      clientNum = #{record.clientnum,jdbcType=VARCHAR},
+      clientTel = #{record.clienttel,jdbcType=VARCHAR},
+      orderStartTime = #{record.orderstarttime,jdbcType=TIMESTAMP},
+      orderEndTime = #{record.orderendtime,jdbcType=TIMESTAMP},
+      orderStatus = #{record.orderstatus,jdbcType=INTEGER},
+      orderFlag = #{record.orderflag,jdbcType=INTEGER},
+      orderCreateTime = #{record.ordercreatetime,jdbcType=TIMESTAMP},
+      orderRemark = #{record.orderremark,jdbcType=VARCHAR},
+      adminId = #{record.adminid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.clothes.bean.Ordertable">
+    update ordertable
+    <set>
+      <if test="clothesid != null">
+        clothesId = #{clothesid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null">
+        orderNum = #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="clientname != null">
+        clientName = #{clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="clientdep != null">
+        clientDep = #{clientdep,jdbcType=VARCHAR},
+      </if>
+      <if test="clientmaj != null">
+        clientMaj = #{clientmaj,jdbcType=VARCHAR},
+      </if>
+      <if test="clientclass != null">
+        clientClass = #{clientclass,jdbcType=VARCHAR},
+      </if>
+      <if test="clientnum != null">
+        clientNum = #{clientnum,jdbcType=VARCHAR},
+      </if>
+      <if test="clienttel != null">
+        clientTel = #{clienttel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstarttime != null">
+        orderStartTime = #{orderstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderendtime != null">
+        orderEndTime = #{orderendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderstatus != null">
+        orderStatus = #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderflag != null">
+        orderFlag = #{orderflag,jdbcType=INTEGER},
+      </if>
+      <if test="ordercreatetime != null">
+        orderCreateTime = #{ordercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderremark != null">
+        orderRemark = #{orderremark,jdbcType=VARCHAR},
+      </if>
+      <if test="adminid != null">
+        adminId = #{adminid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.clothes.bean.Ordertable">
+    update ordertable
+    set clothesId = #{clothesid,jdbcType=INTEGER},
+      orderNum = #{ordernum,jdbcType=INTEGER},
+      clientName = #{clientname,jdbcType=VARCHAR},
+      clientDep = #{clientdep,jdbcType=VARCHAR},
+      clientMaj = #{clientmaj,jdbcType=VARCHAR},
+      clientClass = #{clientclass,jdbcType=VARCHAR},
+      clientNum = #{clientnum,jdbcType=VARCHAR},
+      clientTel = #{clienttel,jdbcType=VARCHAR},
+      orderStartTime = #{orderstarttime,jdbcType=TIMESTAMP},
+      orderEndTime = #{orderendtime,jdbcType=TIMESTAMP},
+      orderStatus = #{orderstatus,jdbcType=INTEGER},
+      orderFlag = #{orderflag,jdbcType=INTEGER},
+      orderCreateTime = #{ordercreatetime,jdbcType=TIMESTAMP},
+      orderRemark = #{orderremark,jdbcType=VARCHAR},
+      adminId = #{adminid,jdbcType=INTEGER}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

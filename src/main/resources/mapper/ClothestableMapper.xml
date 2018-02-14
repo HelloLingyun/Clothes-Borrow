@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.clothes.dao.ClothestableMapper">
+  <resultMap id="BaseResultMap" type="org.clothes.bean.Clothestable">
+    <id column="clothesId" jdbcType="INTEGER" property="clothesid" />
+    <result column="bigTypeId" jdbcType="INTEGER" property="bigtypeid" />
+    <result column="smallTypeId" jdbcType="INTEGER" property="smalltypeid" />
+    <result column="clothesNum" jdbcType="INTEGER" property="clothesnum" />
+    <result column="cothesName" jdbcType="VARCHAR" property="cothesname" />
+    <result column="cothesDesc" jdbcType="VARCHAR" property="cothesdesc" />
+    <result column="clothesPic" jdbcType="VARCHAR" property="clothespic" />
+    <result column="clothesSize" jdbcType="VARCHAR" property="clothessize" />
+    <result column="clothesPrice" jdbcType="REAL" property="clothesprice" />
+    <result column="clothesFlag" jdbcType="VARCHAR" property="clothesflag" />
+    <result column="clothesRemark" jdbcType="VARCHAR" property="clothesremark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    clothesId, bigTypeId, smallTypeId, clothesNum, cothesName, cothesDesc, clothesPic, 
+    clothesSize, clothesPrice, clothesFlag, clothesRemark
+  </sql>
+  <select id="selectByExample" parameterType="org.clothes.bean.ClothestableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clothestable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clothestable
+    where clothesId = #{clothesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clothestable
+    where clothesId = #{clothesid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.clothes.bean.ClothestableExample">
+    delete from clothestable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.clothes.bean.Clothestable">
+    insert into clothestable (clothesId, bigTypeId, smallTypeId, 
+      clothesNum, cothesName, cothesDesc, 
+      clothesPic, clothesSize, clothesPrice, 
+      clothesFlag, clothesRemark)
+    values (#{clothesid,jdbcType=INTEGER}, #{bigtypeid,jdbcType=INTEGER}, #{smalltypeid,jdbcType=INTEGER}, 
+      #{clothesnum,jdbcType=INTEGER}, #{cothesname,jdbcType=VARCHAR}, #{cothesdesc,jdbcType=VARCHAR}, 
+      #{clothespic,jdbcType=VARCHAR}, #{clothessize,jdbcType=VARCHAR}, #{clothesprice,jdbcType=REAL}, 
+      #{clothesflag,jdbcType=VARCHAR}, #{clothesremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.clothes.bean.Clothestable">
+    insert into clothestable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clothesid != null">
+        clothesId,
+      </if>
+      <if test="bigtypeid != null">
+        bigTypeId,
+      </if>
+      <if test="smalltypeid != null">
+        smallTypeId,
+      </if>
+      <if test="clothesnum != null">
+        clothesNum,
+      </if>
+      <if test="cothesname != null">
+        cothesName,
+      </if>
+      <if test="cothesdesc != null">
+        cothesDesc,
+      </if>
+      <if test="clothespic != null">
+        clothesPic,
+      </if>
+      <if test="clothessize != null">
+        clothesSize,
+      </if>
+      <if test="clothesprice != null">
+        clothesPrice,
+      </if>
+      <if test="clothesflag != null">
+        clothesFlag,
+      </if>
+      <if test="clothesremark != null">
+        clothesRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clothesid != null">
+        #{clothesid,jdbcType=INTEGER},
+      </if>
+      <if test="bigtypeid != null">
+        #{bigtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="smalltypeid != null">
+        #{smalltypeid,jdbcType=INTEGER},
+      </if>
+      <if test="clothesnum != null">
+        #{clothesnum,jdbcType=INTEGER},
+      </if>
+      <if test="cothesname != null">
+        #{cothesname,jdbcType=VARCHAR},
+      </if>
+      <if test="cothesdesc != null">
+        #{cothesdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="clothespic != null">
+        #{clothespic,jdbcType=VARCHAR},
+      </if>
+      <if test="clothessize != null">
+        #{clothessize,jdbcType=VARCHAR},
+      </if>
+      <if test="clothesprice != null">
+        #{clothesprice,jdbcType=REAL},
+      </if>
+      <if test="clothesflag != null">
+        #{clothesflag,jdbcType=VARCHAR},
+      </if>
+      <if test="clothesremark != null">
+        #{clothesremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.clothes.bean.ClothestableExample" resultType="java.lang.Long">
+    select count(*) from clothestable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update clothestable
+    <set>
+      <if test="record.clothesid != null">
+        clothesId = #{record.clothesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bigtypeid != null">
+        bigTypeId = #{record.bigtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.smalltypeid != null">
+        smallTypeId = #{record.smalltypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.clothesnum != null">
+        clothesNum = #{record.clothesnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.cothesname != null">
+        cothesName = #{record.cothesname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cothesdesc != null">
+        cothesDesc = #{record.cothesdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clothespic != null">
+        clothesPic = #{record.clothespic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clothessize != null">
+        clothesSize = #{record.clothessize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clothesprice != null">
+        clothesPrice = #{record.clothesprice,jdbcType=REAL},
+      </if>
+      <if test="record.clothesflag != null">
+        clothesFlag = #{record.clothesflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clothesremark != null">
+        clothesRemark = #{record.clothesremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update clothestable
+    set clothesId = #{record.clothesid,jdbcType=INTEGER},
+      bigTypeId = #{record.bigtypeid,jdbcType=INTEGER},
+      smallTypeId = #{record.smalltypeid,jdbcType=INTEGER},
+      clothesNum = #{record.clothesnum,jdbcType=INTEGER},
+      cothesName = #{record.cothesname,jdbcType=VARCHAR},
+      cothesDesc = #{record.cothesdesc,jdbcType=VARCHAR},
+      clothesPic = #{record.clothespic,jdbcType=VARCHAR},
+      clothesSize = #{record.clothessize,jdbcType=VARCHAR},
+      clothesPrice = #{record.clothesprice,jdbcType=REAL},
+      clothesFlag = #{record.clothesflag,jdbcType=VARCHAR},
+      clothesRemark = #{record.clothesremark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.clothes.bean.Clothestable">
+    update clothestable
+    <set>
+      <if test="bigtypeid != null">
+        bigTypeId = #{bigtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="smalltypeid != null">
+        smallTypeId = #{smalltypeid,jdbcType=INTEGER},
+      </if>
+      <if test="clothesnum != null">
+        clothesNum = #{clothesnum,jdbcType=INTEGER},
+      </if>
+      <if test="cothesname != null">
+        cothesName = #{cothesname,jdbcType=VARCHAR},
+      </if>
+      <if test="cothesdesc != null">
+        cothesDesc = #{cothesdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="clothespic != null">
+        clothesPic = #{clothespic,jdbcType=VARCHAR},
+      </if>
+      <if test="clothessize != null">
+        clothesSize = #{clothessize,jdbcType=VARCHAR},
+      </if>
+      <if test="clothesprice != null">
+        clothesPrice = #{clothesprice,jdbcType=REAL},
+      </if>
+      <if test="clothesflag != null">
+        clothesFlag = #{clothesflag,jdbcType=VARCHAR},
+      </if>
+      <if test="clothesremark != null">
+        clothesRemark = #{clothesremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where clothesId = #{clothesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.clothes.bean.Clothestable">
+    update clothestable
+    set bigTypeId = #{bigtypeid,jdbcType=INTEGER},
+      smallTypeId = #{smalltypeid,jdbcType=INTEGER},
+      clothesNum = #{clothesnum,jdbcType=INTEGER},
+      cothesName = #{cothesname,jdbcType=VARCHAR},
+      cothesDesc = #{cothesdesc,jdbcType=VARCHAR},
+      clothesPic = #{clothespic,jdbcType=VARCHAR},
+      clothesSize = #{clothessize,jdbcType=VARCHAR},
+      clothesPrice = #{clothesprice,jdbcType=REAL},
+      clothesFlag = #{clothesflag,jdbcType=VARCHAR},
+      clothesRemark = #{clothesremark,jdbcType=VARCHAR}
+    where clothesId = #{clothesid,jdbcType=INTEGER}
+  </update>
+</mapper>
