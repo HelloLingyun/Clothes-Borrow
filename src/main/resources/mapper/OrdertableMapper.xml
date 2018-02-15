@@ -17,7 +17,7 @@
     <result column="orderFlag" jdbcType="INTEGER" property="orderflag" />
     <result column="orderCreateTime" jdbcType="TIMESTAMP" property="ordercreatetime" />
     <result column="orderRemark" jdbcType="VARCHAR" property="orderremark" />
-    <result column="adminId" jdbcType="INTEGER" property="adminid" />
+    <result column="operationer" jdbcType="VARCHAR" property="operationer" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,7 +80,7 @@
   <sql id="Base_Column_List">
     orderId, clothesId, orderNum, clientName, clientDep, clientMaj, clientClass, clientNum, 
     clientTel, orderStartTime, orderEndTime, orderStatus, orderFlag, orderCreateTime, 
-    orderRemark, adminId
+    orderRemark, operationer
   </sql>
   <select id="selectByExample" parameterType="org.clothes.bean.OrdertableExample" resultMap="BaseResultMap">
     select
@@ -118,13 +118,13 @@
       clientClass, clientNum, clientTel, 
       orderStartTime, orderEndTime, orderStatus, 
       orderFlag, orderCreateTime, orderRemark, 
-      adminId)
+      operationer)
     values (#{orderid,jdbcType=INTEGER}, #{clothesid,jdbcType=INTEGER}, #{ordernum,jdbcType=INTEGER}, 
       #{clientname,jdbcType=VARCHAR}, #{clientdep,jdbcType=VARCHAR}, #{clientmaj,jdbcType=VARCHAR}, 
       #{clientclass,jdbcType=VARCHAR}, #{clientnum,jdbcType=VARCHAR}, #{clienttel,jdbcType=VARCHAR}, 
       #{orderstarttime,jdbcType=TIMESTAMP}, #{orderendtime,jdbcType=TIMESTAMP}, #{orderstatus,jdbcType=INTEGER}, 
       #{orderflag,jdbcType=INTEGER}, #{ordercreatetime,jdbcType=TIMESTAMP}, #{orderremark,jdbcType=VARCHAR}, 
-      #{adminid,jdbcType=INTEGER})
+      #{operationer,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.clothes.bean.Ordertable">
     insert into ordertable
@@ -174,8 +174,8 @@
       <if test="orderremark != null">
         orderRemark,
       </if>
-      <if test="adminid != null">
-        adminId,
+      <if test="operationer != null">
+        operationer,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -224,8 +224,8 @@
       <if test="orderremark != null">
         #{orderremark,jdbcType=VARCHAR},
       </if>
-      <if test="adminid != null">
-        #{adminid,jdbcType=INTEGER},
+      <if test="operationer != null">
+        #{operationer,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -283,8 +283,8 @@
       <if test="record.orderremark != null">
         orderRemark = #{record.orderremark,jdbcType=VARCHAR},
       </if>
-      <if test="record.adminid != null">
-        adminId = #{record.adminid,jdbcType=INTEGER},
+      <if test="record.operationer != null">
+        operationer = #{record.operationer,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -308,7 +308,7 @@
       orderFlag = #{record.orderflag,jdbcType=INTEGER},
       orderCreateTime = #{record.ordercreatetime,jdbcType=TIMESTAMP},
       orderRemark = #{record.orderremark,jdbcType=VARCHAR},
-      adminId = #{record.adminid,jdbcType=INTEGER}
+      operationer = #{record.operationer,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -358,8 +358,8 @@
       <if test="orderremark != null">
         orderRemark = #{orderremark,jdbcType=VARCHAR},
       </if>
-      <if test="adminid != null">
-        adminId = #{adminid,jdbcType=INTEGER},
+      <if test="operationer != null">
+        operationer = #{operationer,jdbcType=VARCHAR},
       </if>
     </set>
     where orderId = #{orderid,jdbcType=INTEGER}
@@ -380,7 +380,7 @@
       orderFlag = #{orderflag,jdbcType=INTEGER},
       orderCreateTime = #{ordercreatetime,jdbcType=TIMESTAMP},
       orderRemark = #{orderremark,jdbcType=VARCHAR},
-      adminId = #{adminid,jdbcType=INTEGER}
+      operationer = #{operationer,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
 </mapper>

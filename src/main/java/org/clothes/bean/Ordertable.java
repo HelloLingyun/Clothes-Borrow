@@ -33,7 +33,7 @@ public class Ordertable {
 
     private String orderremark;
 
-    private Integer adminid;
+    private String operationer;
 
     public Integer getOrderid() {
         return orderid;
@@ -155,11 +155,11 @@ public class Ordertable {
         this.orderremark = orderremark == null ? null : orderremark.trim();
     }
 
-    public Integer getAdminid() {
-        return adminid;
+    public String getOperationer() {
+        return operationer;
     }
 
-    public void setAdminid(Integer adminid) {
-        this.adminid = adminid;
+    public void setOperationer(String operationer) {
+        this.operationer = operationer == null ? null : operationer.trim();
     }
 }

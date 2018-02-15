@@ -1075,63 +1075,73 @@ public class OrdertableExample {
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIsNull() {
-            addCriterion("adminId is null");
+        public Criteria andOperationerIsNull() {
+            addCriterion("operationer is null");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIsNotNull() {
-            addCriterion("adminId is not null");
+        public Criteria andOperationerIsNotNull() {
+            addCriterion("operationer is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidEqualTo(Integer value) {
-            addCriterion("adminId =", value, "adminid");
+        public Criteria andOperationerEqualTo(String value) {
+            addCriterion("operationer =", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidNotEqualTo(Integer value) {
-            addCriterion("adminId <>", value, "adminid");
+        public Criteria andOperationerNotEqualTo(String value) {
+            addCriterion("operationer <>", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidGreaterThan(Integer value) {
-            addCriterion("adminId >", value, "adminid");
+        public Criteria andOperationerGreaterThan(String value) {
+            addCriterion("operationer >", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("adminId >=", value, "adminid");
+        public Criteria andOperationerGreaterThanOrEqualTo(String value) {
+            addCriterion("operationer >=", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidLessThan(Integer value) {
-            addCriterion("adminId <", value, "adminid");
+        public Criteria andOperationerLessThan(String value) {
+            addCriterion("operationer <", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidLessThanOrEqualTo(Integer value) {
-            addCriterion("adminId <=", value, "adminid");
+        public Criteria andOperationerLessThanOrEqualTo(String value) {
+            addCriterion("operationer <=", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIn(List<Integer> values) {
-            addCriterion("adminId in", values, "adminid");
+        public Criteria andOperationerLike(String value) {
+            addCriterion("operationer like", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidNotIn(List<Integer> values) {
-            addCriterion("adminId not in", values, "adminid");
+        public Criteria andOperationerNotLike(String value) {
+            addCriterion("operationer not like", value, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidBetween(Integer value1, Integer value2) {
-            addCriterion("adminId between", value1, value2, "adminid");
+        public Criteria andOperationerIn(List<String> values) {
+            addCriterion("operationer in", values, "operationer");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidNotBetween(Integer value1, Integer value2) {
-            addCriterion("adminId not between", value1, value2, "adminid");
+        public Criteria andOperationerNotIn(List<String> values) {
+            addCriterion("operationer not in", values, "operationer");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationerBetween(String value1, String value2) {
+            addCriterion("operationer between", value1, value2, "operationer");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationerNotBetween(String value1, String value2) {
+            addCriterion("operationer not between", value1, value2, "operationer");
             return (Criteria) this;
         }
     }
