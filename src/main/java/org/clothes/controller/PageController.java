@@ -22,7 +22,17 @@ public class PageController {
 	public  String showIndex(){
 		return "index";
 	}
-		
+	
+	/**      
+	* 描述：   显示首页<br>
+	* 创建人：灵云<br>
+	* 创建时间：2018年2月14日 下午10:42:08 
+	*/
+	@RequestMapping("initaddClothes.do")
+	public  String showAddClothes(){
+		return "addClothes";
+	}
+	
 	/**      
 	* 描述：   要显示页面跳转<br>
 	* 创建人：灵云<br>
@@ -32,6 +42,7 @@ public class PageController {
 	public String showPage(@PathVariable String page){
 		return page;
 	}
+	
 	
 	
 	
